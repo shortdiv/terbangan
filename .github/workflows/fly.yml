@@ -9,9 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: superfly/flyctl-actions/setup-flyctl@master
       - name: Run script file
-        run: ls
+        run: |
+          echo "Commit SHA": ${{ github.sha }}
+          echo "This was deployed via an action $GITHUB_EVENT_NAME from the $GITHUB_REPOSITORY repo"
+          echo "The specific commit was $GITHUB_SHA"
         shell: bash
   deploy:
     name: Deploy app
@@ -22,6 +24,3 @@ jobs:
       - run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-    name: Logs
-    steps:
-      - uses: 
