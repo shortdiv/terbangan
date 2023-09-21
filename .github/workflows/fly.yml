@@ -1,0 +1,27 @@
+name: Fly Deploy
+on:
+  push:
+    branches:
+      - main
+jobs:
+  check_machines:
+    name: Check machine
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - name: Run script file
+        run: ls
+        shell: bash
+  deploy:
+    name: Deploy app
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: flyctl deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+    name: Logs
+    steps:
+      - uses: 
