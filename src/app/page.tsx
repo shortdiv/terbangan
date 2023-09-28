@@ -69,7 +69,7 @@ export default function Home() {
           Submit
           </button>
         </form> */}
-        <div>Connecting from this page{connectionFrom}</div>
+        <div>Connecting from this{connectionFrom}</div>
         <div>{ hskeys.map(k => <p key={k}>{k}</p>)}</div>
         <div>{ hsvals.map(v => <p key={v}>{v}</p>)}</div>
       </div>
